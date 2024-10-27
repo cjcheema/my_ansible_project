@@ -1,0 +1,11 @@
+- name: Create complex custom facts with Jinja2
+  hosts: all
+  tasks:
+    - name: Set server tier fact based on vCPU count
+      set_fact:
+        server_tier: "{{ 'high' if ansible_processor_vcpus > 1 else 'standard' }}"
+      
+    - name: Print server tier
+      debug:
+        msg: "This server is classified as {{ server_tier }} tier based on vCPU count."
+

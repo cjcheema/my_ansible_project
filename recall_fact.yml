@@ -1,0 +1,11 @@
+- name: Register custom fact from command output
+  hosts: all
+  tasks:
+    - name: Get uptime information
+      command: uptime
+      register: uptime_info
+
+    - name: Print uptime
+      debug:
+        msg: "The server uptime is: {{ uptime_info.stdout }}"
+

@@ -1,0 +1,8 @@
+---
+- name: Using custom facts from managed host
+  hosts: Production
+  tasks:
+    - name: Display custom facts
+      debug:
+        msg: "App Environment: {{ ansible_local.custom_app.app_environment }}, Version: {{ ansible_local.custom_app.app_version }}"
+

@@ -1,0 +1,13 @@
+---
+- name: Create custom fact variables
+  hosts: Production
+  tasks:
+    - name: Set custom fact for application environment
+      set_fact:
+        app_environment: "production"
+        app_version: "v1.2.3"
+        
+    - name: Display custom fact variables
+      debug:
+        msg: "App Environment: {{ app_environment }}, Version: {{ app_version }}"
+

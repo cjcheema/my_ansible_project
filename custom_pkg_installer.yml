@@ -1,0 +1,20 @@
+- name: Install packages based on app environment
+  hosts: all
+  become: yes
+  tasks:
+    - name: Set custom app environment fact
+      set_fact:
+        app_environment: "{{ app_env_var }}"
+
+    - name: Install production package
+      apt:
+        name: apache2
+        state: present
+      when: inventory_hostname in groups['Production'] and app_environment == "production"
+
+    - name: Install development package
+      apt:
+        name: nginx
+        state: present
+      when: inventory_hostname in groups['Development'] and app_environment == "development"
+
